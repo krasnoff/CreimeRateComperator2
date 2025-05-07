@@ -7,7 +7,6 @@ import { ElementInterface } from '@/interfaces/element.interface';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { I18nManager, StyleSheet, Text, View } from 'react-native';
-import { AutocompleteDropdownContextProvider } from 'react-native-autocomplete-dropdown';
 //import { Wizard } from '../components/wizard/Wizard.tsx';
 
 export default function MainPage() {
@@ -32,7 +31,7 @@ export default function MainPage() {
     }
     
     return (
-        <AutocompleteDropdownContextProvider>
+        
             <View style={styles.container}>
                 <StatusBar
                 backgroundColor='#FFFFFF'
@@ -74,7 +73,7 @@ export default function MainPage() {
                     </Step>
                 </Wizard>
             </View>
-        </AutocompleteDropdownContextProvider>
+        
     );
 }
 

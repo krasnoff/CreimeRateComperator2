@@ -12,6 +12,9 @@ export default function Layout() {
   }, []);
 
   return (
+    // <AutocompleteDropdownContextProvider
+    // //  headerOffset={100}
+    // >
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Drawer screenOptions={{
         drawerPosition: 'right', // 👈 this changes the drawer to open from the right
@@ -43,5 +46,6 @@ export default function Layout() {
         />
       </Drawer>
     </GestureHandlerRootView>
+    // </AutocompleteDropdownContextProvider>
   );
 }
