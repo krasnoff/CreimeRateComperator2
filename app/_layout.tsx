@@ -1,10 +1,15 @@
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Drawer } from 'expo-router/drawer';
+import { useEffect } from 'react';
 import { I18nManager } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function Layout() {
-  I18nManager.allowRTL(true);
-  I18nManager.forceRTL(true);
+  useEffect(() => {
+    if (!I18nManager.isRTL) {
+      I18nManager.allowRTL(true);
+      I18nManager.forceRTL(true);      
+    }
+  }, []);
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
