@@ -1,29 +1,42 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Drawer } from 'expo-router/drawer';
+import { I18nManager } from 'react-native';
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
-  }
+export default function Layout() {
+  I18nManager.allowRTL(true);
+  I18nManager.forceRTL(true);
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Drawer screenOptions={{
+        drawerPosition: 'right', // 👈 this changes the drawer to open from the right
+      }}>
+        <Drawer.Screen
+          name="index" // This is the name of the page and must match the url from root
+          options={{
+            drawerLabel: 'בחר קריטריונים להשוואה',
+            title: 'מפת הפשיעה בישראל',
+            drawerItemStyle: { direction: 'rtl' }, 
+            
+          }}
+        />
+        <Drawer.Screen
+          name="about" // This is the name of the page and must match the url from root
+          options={{
+            drawerLabel: 'אודות',
+            title: 'מפת הפשיעה בישראל',
+            drawerItemStyle: { direction: 'rtl' }, 
+          }}
+        />
+        <Drawer.Screen
+          name="+not-found"
+          options={{
+            drawerItemStyle: { height: 0 }, // Hides it from drawer
+            drawerLabel: () => null,         // Hides label
+            title: '',                       // No title
+          }}
+        />
+      </Drawer>
+    </GestureHandlerRootView>
   );
 }
