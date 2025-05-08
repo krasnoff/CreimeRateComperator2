@@ -2,6 +2,7 @@ import { AreasEnum } from "@/enums/area.enum";
 import { FeloniesEnum } from "@/enums/felonies.enum";
 import { useLoadCategories } from "@/hooks/useLoadCategories";
 import { ElementInterface } from "@/interfaces/element.interface";
+import { Picker } from "@react-native-picker/picker";
 import Checkbox from 'expo-checkbox';
 import React, { useEffect, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -15,6 +16,9 @@ export default function PageOne(props: PageOneProps) {
     const { felonies, location } = useLoadCategories();
     const [filteredFelonies, setFilteredFelonies] = useState<ElementInterface[]>([]);
     const [filteredLocation, setFilteredLocation] = useState<ElementInterface[]>([]);
+
+    const [selectedFilteredFelonies, setSelectedFilteredFelonies] = useState<ElementInterface>();
+    const [selectedFilteredLocation, setSelectedFilteredLocation] = useState<ElementInterface>();
 
     useEffect(() => {
         setFilteredFelonies(felonies);
@@ -129,14 +133,15 @@ export default function PageOne(props: PageOneProps) {
         }
     }, [isCitiesChecked, isMerhavChecked, isMunicipalChecked, isPoliceStationChecked, isPoliceDistrictChecked, isBoroughChecked]);
 
-    const onSelectItem = (item: ElementInterface) => {
-        // console.log('Selected item:', item);
-        props.handleSelectedItemChange(item);
+    const onSelectItem = (item: ElementInterface, index: number) => {
+        props.handleSelectedItemChange(filteredFelonies[index - 1]);
+        setSelectedFilteredFelonies(item);
     };
 
-    const onSelectCityItem = (item: ElementInterface) => {
+    const onSelectCityItem = (item: ElementInterface, index: number) => {
         // console.log('Selected city item:', item);
-        props.handleSelectedCityItemChange(item);
+        props.handleSelectedCityItemChange(filteredLocation[index - 1]);
+        setSelectedFilteredLocation(item);
     };
   
     return (
@@ -154,6 +159,16 @@ export default function PageOne(props: PageOneProps) {
                 // ChevronIconComponent={<></>} // Custom icon for the dropdown
                 // ClearIconComponent={<></>} // Custom icon for the clear button
             /> */}
+            <Picker
+                style={styles.rightButtonsContainerStyleText}
+                mode="dropdown"
+                selectedValue={selectedFilteredFelonies}
+                onValueChange={(item: ElementInterface, index: number) => onSelectItem(item, index)}>
+                <Picker.Item key={-1} label="כל סוגי העבירות" value="-1" />
+                {filteredFelonies.map((item: ElementInterface, index: number) => (
+                    <Picker.Item key={index} label={item.title} value={item.id} />
+                ))}
+            </Picker>
             <View style={styles.section}>
                 <Pressable  onPress={() => onChecked(!isChecked)}><Text style={styles.paragraph}>כל העבירות</Text></Pressable>
                 <Checkbox style={styles.checkbox} value={isChecked} onValueChange={() => { onChecked(!isChecked); }} />
@@ -179,6 +194,16 @@ export default function PageOne(props: PageOneProps) {
                 // ChevronIconComponent={<></>} // Custom icon for the dropdown
                 // ClearIconComponent={<></>} // Custom icon for the clear button
             /> */}
+            <Picker
+                style={styles.rightButtonsContainerStyleText}
+                mode="dropdown"
+                selectedValue={selectedFilteredLocation}
+                onValueChange={(item: ElementInterface, index: number) => onSelectCityItem(item, index)}>
+                <Picker.Item key={-1} label="כל המקומות" value="-1" />
+                {filteredLocation.map((item: ElementInterface, index: number) => (
+                    <Picker.Item key={index} label={item.title} value={item.id} />
+                ))}
+            </Picker>
             <View style={styles.section}>
                 <Pressable  onPress={() => onAreaChecked(!isAreaChecked)}><Text style={styles.paragraph}>כל הארץ</Text></Pressable>
                 <Checkbox style={styles.checkbox} value={isAreaChecked} onValueChange={() => onAreaChecked(!isAreaChecked)} />

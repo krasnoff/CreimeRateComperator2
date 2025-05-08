@@ -1,9 +1,9 @@
-import { useState } from "react";
-import axios from "axios";
-import { ElementInterface } from "@/interfaces/element.interface";
-import { ResponseDataInterface } from "@/interfaces/responseData.inteface";
 import { AreasEnum } from "@/enums/area.enum";
 import { FeloniesEnum } from "@/enums/felonies.enum";
+import { ElementInterface } from "@/interfaces/element.interface";
+import { ResponseDataInterface } from "@/interfaces/responseData.inteface";
+import axios from "axios";
+import { useState } from "react";
 
 const useGetData = () => {
     const [data1, setData1] = useState<ResponseDataInterface>();
@@ -35,15 +35,15 @@ const useGetData = () => {
     const getYearID = (year: string) => {
         switch (year) {
             case '2020':
-                return '5fc13c50-b6f3-4712-b831-a75e0f91a17e'; // Example resource ID for 2020
+                return '520597e3-6003-4247-9634-0ae85434b971'; // Example resource ID for 2020
             case '2021':
-                return '32aacfc9-3524-4fba-a282-3af052380244'; // Example resource ID for 2021
+                return '3f71fd16-25b8-4cfe-8661-e6199db3eb12'; // Example resource ID for 2021
             case '2022':
                 return 'a59f3e9e-a7fe-4375-97d0-76cea68382c1'; // Example resource ID for 2022
             case '2023':
-                return '3f71fd16-25b8-4cfe-8661-e6199db3eb12'; // Example resource ID for 2022
+                return '32aacfc9-3524-4fba-a282-3af052380244'; // Example resource ID for 2022
             case '2024':
-                return '520597e3-6003-4247-9634-0ae85434b971'; // Example resource ID for 2022
+                return '5fc13c50-b6f3-4712-b831-a75e0f91a17e'; // Example resource ID for 2022
             default:
                 throw new Error('Invalid year provided');
         }
