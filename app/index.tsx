@@ -6,7 +6,7 @@ import { Step } from '@/components/wizard/WizardStep.tsx/wizardStep';
 import { ElementInterface } from '@/interfaces/element.interface';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { I18nManager, StyleSheet, Text, View } from 'react-native';
+import { I18nManager, StyleSheet, View } from 'react-native';
 //import { Wizard } from '../components/wizard/Wizard.tsx';
 
 export default function MainPage() {
@@ -43,7 +43,7 @@ export default function MainPage() {
                             handleSelectedCityItemChange={(id: ElementInterface) => handleSelectedCityItemChange(id)}
                             handleSelectedItemChange={(id: ElementInterface) => handleSelectedItemChange(id)}
                         /> 
-                        <Text>Page One</Text>
+                        
                     </Step>
                     <Step>
                         <PageTwo handleFirstYearChange={function (id: string): void {
@@ -59,7 +59,7 @@ export default function MainPage() {
                             console.log('Selected second year quarter ID:', id);
                             setSelectedSecondYearQuarter(id);
                         } } />
-                        <Text>Page Two</Text>
+                        
                     </Step>
                     <Step>
                         <PageThree
@@ -69,7 +69,7 @@ export default function MainPage() {
                             selectedSecondYear={selectedSecondYear}
                             selectedFirstYearQuarter={selectedFirstYearQuarter}
                             selectedSecondYearQuarter={selectedSecondYearQuarter} />
-                        <Text>Page Three</Text>
+                        
                     </Step>
                 </Wizard>
             </View>
