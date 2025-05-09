@@ -145,22 +145,10 @@ export default function PageOne(props: PageOneProps) {
     };
   
     return (
-        <ScrollView>
-            <Text style={ [styles.title, styles.rightButtonsContainerStyleText] }>שלב א': בחר קריטריונים להשוואה</Text>
+        <ScrollView style={ styles.width100 }>
+            <Text style={[styles.padding10, styles.title, styles.rightButtonsContainerStyleText] }>שלב א': בחר קריטריונים להשוואה</Text>
             <Text style={[styles.padding10, styles.rightButtonsContainerStyleText]}>בחר את סוג העבירה, במידה ולא תבחר עבירה אז החיפוש יהיה לכל סוגי העברות</Text>
-            {/* <AutocompleteDropdown
-                clearOnFocus={false}
-                closeOnBlur={true}
-                closeOnSubmit={true}
-                onSelectItem={(item: any) => onSelectItem(item)}
-                dataSet={filteredFelonies as any}
-                containerStyle={styles.autoComplete}
-                rightButtonsContainerStyle={styles.rightButtonsContainerStyle}
-                // ChevronIconComponent={<></>} // Custom icon for the dropdown
-                // ClearIconComponent={<></>} // Custom icon for the clear button
-            /> */}
             <Picker
-                style={styles.rightButtonsContainerStyleText}
                 mode="dropdown"
                 selectedValue={selectedFilteredFelonies}
                 onValueChange={(item: ElementInterface, index: number) => onSelectItem(item, index)}>
@@ -183,19 +171,7 @@ export default function PageOne(props: PageOneProps) {
             </View>
             <Text style={styles.padding10}> </Text>
             <Text style={[styles.padding10, , styles.rightButtonsContainerStyleText]}>בחר יישוב / מחוז / מרחב / שכונה. במידה ולא תבחר אז החיפוש יהיה לכל הארץ</Text>
-            {/* <AutocompleteDropdown
-                clearOnFocus={false}
-                closeOnBlur={true}
-                closeOnSubmit={true}
-                onSelectItem={(item: any) => onSelectCityItem(item)}
-                dataSet={filteredLocation as any}
-                containerStyle={styles.autoComplete}
-                rightButtonsContainerStyle={styles.rightButtonsContainerStyle}
-                // ChevronIconComponent={<></>} // Custom icon for the dropdown
-                // ClearIconComponent={<></>} // Custom icon for the clear button
-            /> */}
             <Picker
-                style={styles.rightButtonsContainerStyleText}
                 mode="dropdown"
                 selectedValue={selectedFilteredLocation}
                 onValueChange={(item: ElementInterface, index: number) => onSelectCityItem(item, index)}>
@@ -237,6 +213,9 @@ export default function PageOne(props: PageOneProps) {
 }
 
 const styles = StyleSheet.create({
+    width100: {
+        width: '100%'
+    },
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -248,10 +227,13 @@ const styles = StyleSheet.create({
         direction: 'rtl',
     },
     rightButtonsContainerStyleText: {
-        direction: 'rtl',
+        direction: 'rtl'
     },
     rightButtonsContainerStyle: {
         direction: 'ltr',
+    },
+    picker: {
+        direction: 'rtl',
     },
     clearButtonContainerStyle: {
         left: 5,
@@ -278,10 +260,9 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         fontWeight: 'bold',
-        textAlign: 'right',
         marginBottom: 20,
         paddingLeft: 10,
         paddingRight: 10,
-        marginTop: 20,
+        marginTop: 20
     }
 });
