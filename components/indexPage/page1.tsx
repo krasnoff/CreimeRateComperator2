@@ -5,7 +5,8 @@ import { ElementInterface } from "@/interfaces/element.interface";
 import { Picker } from "@react-native-picker/picker";
 import Checkbox from 'expo-checkbox';
 import React, { useEffect, useState } from "react";
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, Text, View } from 'react-native';
+import { styles } from "./style";
 
 export interface PageOneProps {
     handleSelectedItemChange: (id: ElementInterface) => void
@@ -145,9 +146,9 @@ export default function PageOne(props: PageOneProps) {
     };
   
     return (
-        <ScrollView style={ styles.width100 }>
-            <Text style={[styles.padding10, styles.title, styles.rightButtonsContainerStyleText] }>שלב א': בחר קריטריונים להשוואה</Text>
-            <Text style={[styles.padding10, styles.rightButtonsContainerStyleText]}>בחר את סוג העבירה, במידה ולא תבחר עבירה אז החיפוש יהיה לכל סוגי העברות</Text>
+        <ScrollView contentContainerStyle={styles.container}>
+            <Text style={styles.title}>שלב א': בחר קריטריונים להשוואה</Text>
+            <Text>בחר את סוג העבירה, במידה ולא תבחר עבירה אז החיפוש יהיה לכל סוגי העברות</Text>
             <Picker
                 mode="dropdown"
                 selectedValue={selectedFilteredFelonies}
@@ -157,20 +158,20 @@ export default function PageOne(props: PageOneProps) {
                     <Picker.Item key={index} label={item.title} value={item.id} />
                 ))}
             </Picker>
-            <View style={styles.section}>
-                <Pressable  onPress={() => onChecked(!isChecked)}><Text style={styles.paragraph}>כל העבירות</Text></Pressable>
-                <Checkbox style={styles.checkbox} value={isChecked} onValueChange={() => { onChecked(!isChecked); }} />
+            <View style={styles.checkboxContainer}>
+                <Checkbox value={isChecked} onValueChange={() => { onChecked(!isChecked); }} />
+                <Pressable style={styles.checkboxText} onPress={() => onChecked(!isChecked)}><Text>כל העבירות</Text></Pressable>
             </View>
-            <View style={styles.section}>
-                <Pressable  onPress={() => setCategoriesChecked(!isCategoriesChecked)}><Text style={styles.paragraph}>קטגוריות</Text></Pressable>
-                <Checkbox style={styles.checkbox} value={isCategoriesChecked} onValueChange={() => setCategoriesChecked(!isCategoriesChecked)} />
+            <View style={styles.checkboxContainer}>
+                <Checkbox value={isCategoriesChecked} onValueChange={() => setCategoriesChecked(!isCategoriesChecked)} />
+                <Pressable style={styles.checkboxText} onPress={() => setCategoriesChecked(!isCategoriesChecked)}><Text>קטגוריות</Text></Pressable>
             </View>
-            <View style={styles.section}>
-                <Pressable  onPress={() => setSingleFelonyChecked(!isSingleFelonyChecked)}><Text style={styles.paragraph}>סוגי עבירות</Text></Pressable>
-                <Checkbox style={styles.checkbox} value={isSingleFelonyChecked} onValueChange={() => setSingleFelonyChecked(!isSingleFelonyChecked)} />
+            <View style={styles.checkboxContainer}>
+                <Checkbox value={isSingleFelonyChecked} onValueChange={() => setSingleFelonyChecked(!isSingleFelonyChecked)} />
+                <Pressable style={styles.checkboxText} onPress={() => setSingleFelonyChecked(!isSingleFelonyChecked)}><Text>סוגי עבירות</Text></Pressable>
             </View>
-            <Text style={styles.padding10}> </Text>
-            <Text style={[styles.padding10, , styles.rightButtonsContainerStyleText]}>בחר יישוב / מחוז / מרחב / שכונה. במידה ולא תבחר אז החיפוש יהיה לכל הארץ</Text>
+            <Text> </Text>
+            <Text>בחר יישוב / מחוז / מרחב / שכונה. במידה ולא תבחר אז החיפוש יהיה לכל הארץ</Text>
             <Picker
                 mode="dropdown"
                 selectedValue={selectedFilteredLocation}
@@ -180,89 +181,34 @@ export default function PageOne(props: PageOneProps) {
                     <Picker.Item key={index} label={item.title} value={item.id} />
                 ))}
             </Picker>
-            <View style={styles.section}>
-                <Pressable  onPress={() => onAreaChecked(!isAreaChecked)}><Text style={styles.paragraph}>כל הארץ</Text></Pressable>
-                <Checkbox style={styles.checkbox} value={isAreaChecked} onValueChange={() => onAreaChecked(!isAreaChecked)} />
+            <View style={styles.checkboxContainer}>
+                <Checkbox value={isAreaChecked} onValueChange={() => onAreaChecked(!isAreaChecked)} />
+                <Pressable style={styles.checkboxText} onPress={() => onAreaChecked(!isAreaChecked)}><Text>כל הארץ</Text></Pressable>
             </View>
-            <View style={styles.section}>
-                <Pressable  onPress={() => setCitiesChecked(!isCitiesChecked)}><Text style={styles.paragraph}>ערים</Text></Pressable>
-                <Checkbox style={styles.checkbox} value={isCitiesChecked} onValueChange={() => setCitiesChecked(!isCitiesChecked)} />
+            <View style={styles.checkboxContainer}>
+                <Checkbox value={isCitiesChecked} onValueChange={() => setCitiesChecked(!isCitiesChecked)} />
+                <Pressable style={styles.checkboxText} onPress={() => setCitiesChecked(!isCitiesChecked)}><Text>ערים</Text></Pressable>
             </View>
-            <View style={styles.section}>
-                <Pressable  onPress={() => setMerhavChecked(!isMerhavChecked)}><Text style={styles.paragraph}>מרחבים</Text></Pressable>
-                <Checkbox style={styles.checkbox} value={isMerhavChecked} onValueChange={() => setMerhavChecked(!isMerhavChecked)} />
+            <View style={styles.checkboxContainer}>
+                <Checkbox value={isMerhavChecked} onValueChange={() => setMerhavChecked(!isMerhavChecked)} />
+                <Pressable style={styles.checkboxText} onPress={() => setMerhavChecked(!isMerhavChecked)}><Text>מרחבים</Text></Pressable>
             </View>
-            <View style={styles.section}>
-                <Pressable  onPress={() => setMunicipalChecked(!isMunicipalChecked)}><Text style={styles.paragraph}>מועצות אזוריות</Text></Pressable>
-                <Checkbox style={styles.checkbox} value={isMunicipalChecked} onValueChange={() => setMunicipalChecked(!isMunicipalChecked)} />
+            <View style={styles.checkboxContainer}>
+                <Checkbox value={isMunicipalChecked} onValueChange={() => setMunicipalChecked(!isMunicipalChecked)} />
+                <Pressable style={styles.checkboxText} onPress={() => setMunicipalChecked(!isMunicipalChecked)}><Text>מועצות אזוריות</Text></Pressable>
             </View>
-            <View style={styles.section}>
-                <Pressable  onPress={() => setPoliceStationChecked(!isPoliceStationChecked)}><Text style={styles.paragraph}>תחנות משטרה</Text></Pressable>
-                <Checkbox style={styles.checkbox} value={isPoliceStationChecked} onValueChange={() => setPoliceStationChecked(!isPoliceStationChecked)} />
+            <View style={styles.checkboxContainer}>
+                <Checkbox value={isPoliceStationChecked} onValueChange={() => setPoliceStationChecked(!isPoliceStationChecked)} />
+                <Pressable style={styles.checkboxText} onPress={() => setPoliceStationChecked(!isPoliceStationChecked)}><Text>תחנות משטרה</Text></Pressable>
             </View>
-            <View style={styles.section}>
-                <Pressable  onPress={() => setPoliceDistrictChecked(!isPoliceDistrictChecked)}><Text style={styles.paragraph}>מחוזות</Text></Pressable>
-                <Checkbox style={styles.checkbox} value={isPoliceDistrictChecked} onValueChange={() => setPoliceDistrictChecked(!isPoliceDistrictChecked)} />
+            <View style={styles.checkboxContainer}>
+                <Checkbox value={isPoliceDistrictChecked} onValueChange={() => setPoliceDistrictChecked(!isPoliceDistrictChecked)} />
+                <Pressable style={styles.checkboxText} onPress={() => setPoliceDistrictChecked(!isPoliceDistrictChecked)}><Text>מחוזות</Text></Pressable>
             </View>
-            <View style={styles.section}>
-                <Pressable  onPress={() => setBoroughChecked(!isBoroughChecked)}><Text style={styles.paragraph}>שכונות</Text></Pressable>
-                <Checkbox style={styles.checkbox} value={isBoroughChecked} onValueChange={() => setBoroughChecked(!isBoroughChecked)} />
+            <View style={styles.checkboxContainer}>
+                <Checkbox value={isBoroughChecked} onValueChange={() => setBoroughChecked(!isBoroughChecked)} />
+                <Pressable style={styles.checkboxText} onPress={() => setBoroughChecked(!isBoroughChecked)}><Text>שכונות</Text></Pressable>
             </View>
         </ScrollView>
     );
 }
-
-const styles = StyleSheet.create({
-    width100: {
-        width: '100%'
-    },
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    autoComplete: {
-        width: '100%',
-        padding: 10,
-        direction: 'rtl',
-    },
-    rightButtonsContainerStyleText: {
-        direction: 'rtl'
-    },
-    rightButtonsContainerStyle: {
-        direction: 'ltr',
-    },
-    picker: {
-        direction: 'rtl',
-    },
-    clearButtonContainerStyle: {
-        left: 5,
-        right: null
-    },
-    padding10: {
-        paddingLeft: 10,
-        paddingRight: 10
-    },
-    section: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        width: '100%',
-        paddingLeft: 10,
-        paddingRight: 10
-    },
-    paragraph: {
-        fontSize: 15,
-    },
-    checkbox: {
-        margin: 8,
-    },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 20,
-        paddingLeft: 10,
-        paddingRight: 10,
-        marginTop: 20
-    }
-});
