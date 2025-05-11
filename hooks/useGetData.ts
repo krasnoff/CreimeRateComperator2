@@ -120,6 +120,8 @@ const useGetData = () => {
         postData2.filters = filter2;
 
         try {
+            setLoading(true);
+            
             // Send both POST requests concurrently using Promise.all
             const [response1, response2] = await Promise.all([
                 axiosInstance.post('', postData1),
