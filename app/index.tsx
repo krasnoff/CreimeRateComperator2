@@ -17,8 +17,15 @@ export default function MainPage() {
     const [selectedItem, setSelectedItem] = React.useState<ElementInterface | null>(null);
     const [selectedFirstYear, setSelectedFirstYear] = React.useState<string>('2022');
     const [selectedSecondYear, setSelectedSecondYear] = React.useState<string>('2024');
-    const [selectedFirstYearQuarter, setSelectedFirstYearQuarter] = React.useState<string>('all');
-    const [selectedSecondYearQuarter, setSelectedSecondYearQuarter] = React.useState<string>('all');
+    
+    const [firstYearQuarter1, setFirstYearQuarter1] = React.useState<boolean>(true);
+    const [firstYearQuarter2, setFirstYearQuarter2] = React.useState<boolean>(true);
+    const [firstYearQuarter3, setFirstYearQuarter3] = React.useState<boolean>(true);
+    const [firstYearQuarter4, setFirstYearQuarter4] = React.useState<boolean>(true);
+    const [secondYearQuarter1, setSecondYearQuarter1] = React.useState<boolean>(true);
+    const [secondYearQuarter2, setSecondYearQuarter2] = React.useState<boolean>(true);
+    const [secondYearQuarter3, setSecondYearQuarter3] = React.useState<boolean>(true);
+    const [secondYearQuarter4, setSecondYearQuarter4] = React.useState<boolean>(true);
 
     const handleSelectedCityItemChange = (id: ElementInterface) => {
         console.log('Selected city ID:', id);
@@ -52,12 +59,30 @@ export default function MainPage() {
                         } } handleSecondYearChange={function (id: string): void {
                             console.log('Selected second year ID:', id);
                             setSelectedSecondYear(id);
-                        } } handleFirstYearQuarterChange={function (id: string): void {
+                        } } handleFirstYearQuarter1Change={function (id: boolean): void {
                             console.log('Selected first year quarter ID:', id);
-                            setSelectedFirstYearQuarter(id);
-                        } } handleSecondYearQuarterChange={function (id: string): void {
+                            setFirstYearQuarter1(id)
+                        } } handleFirstYearQuarter2Change={function (id: boolean): void {
                             console.log('Selected second year quarter ID:', id);
-                            setSelectedSecondYearQuarter(id);
+                            setFirstYearQuarter2(id)
+                        } } handleFirstYearQuarter3Change={function (id: boolean): void {
+                            console.log('Selected first year quarter ID:', id);
+                            setFirstYearQuarter3(id)
+                        } } handleFirstYearQuarter4Change={function (id: boolean): void {
+                            console.log('Selected second year quarter ID:', id);
+                            setFirstYearQuarter4(id)
+                        } } handleSecondYearQuarter1Change={function (id: boolean): void {
+                            console.log('Selected first year quarter ID:', id);
+                            setSecondYearQuarter1(id)
+                        } } handleSecondYearQuarter2Change={function (id: boolean): void {
+                            console.log('Selected second year quarter ID:', id);
+                            setSecondYearQuarter2(id)
+                        } } handleSecondYearQuarter3Change={function (id: boolean): void {
+                            console.log('Selected first year quarter ID:', id);
+                            setSecondYearQuarter3(id)
+                        } } handleSecondYearQuarter4Change={function (id: boolean): void {
+                            console.log('Selected second year quarter ID:', id);
+                            setSecondYearQuarter4(id)
                         } } />
                         
                     </Step>
@@ -67,9 +92,15 @@ export default function MainPage() {
                             selectedItem={selectedItem}
                             selectedFirstYear={selectedFirstYear}
                             selectedSecondYear={selectedSecondYear}
-                            selectedFirstYearQuarter={selectedFirstYearQuarter}
-                            selectedSecondYearQuarter={selectedSecondYearQuarter} />
-                        
+                            firstYearQuarter1={firstYearQuarter1}
+                            firstYearQuarter2={firstYearQuarter2}
+                            firstYearQuarter3={firstYearQuarter3}
+                            firstYearQuarter4={firstYearQuarter4}
+                            secondYearQuarter1={secondYearQuarter1}
+                            secondYearQuarter2={secondYearQuarter2}
+                            secondYearQuarter3={secondYearQuarter3}
+                            secondYearQuarter4={secondYearQuarter4}/>
+
                     </Step>
                 </Wizard>
             </View>

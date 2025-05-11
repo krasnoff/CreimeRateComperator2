@@ -81,13 +81,37 @@ const useGetData = () => {
     }
 
     // Function to send two POST requests concurrently
-    const sendPostRequests = async (selectedCity: ElementInterface, selectedItem: ElementInterface, year1: string, year2: string, yearQuarter1: string, yearQuarter2: string) => {
+    const sendPostRequests = async (selectedCity: ElementInterface, 
+                                    selectedItem: ElementInterface, 
+                                    year1: string, 
+                                    year2: string, 
+                                    firstYearQuarter1: boolean, 
+                                    firstYearQuarter2: boolean, 
+                                    firstYearQuarter3: boolean, 
+                                    firstYearQuarter4: boolean,
+                                    secondYearQuarter1: boolean, 
+                                    secondYearQuarter2: boolean, 
+                                    secondYearQuarter3: boolean, 
+                                    secondYearQuarter4: boolean) => {
         const postData1 = {...postDataTemplate};
         const postData2 = {...postDataTemplate};
 
         const filter = setFilterObject(selectedCity, selectedItem);
-        const filter1 = { ...filter, "YearQuarterKod": yearQuarter1 !== 'all' ? yearQuarter1 : undefined };
-        const filter2 = { ...filter, "YearQuarterKod": yearQuarter2 !== 'all' ? yearQuarter2 : undefined  };
+
+        let yearQuarter1: string | string[] = [];
+        if(firstYearQuarter1) yearQuarter1.push('Q1');
+        if(firstYearQuarter2) yearQuarter1.push('Q2');
+        if(firstYearQuarter3) yearQuarter1.push('Q3');
+        if(firstYearQuarter4) yearQuarter1.push('Q4');
+
+        let yearQuarter2: string | string[] = [];
+        if(secondYearQuarter1) yearQuarter2.push('Q1');
+        if(secondYearQuarter2) yearQuarter2.push('Q2');
+        if(secondYearQuarter3) yearQuarter2.push('Q3');
+        if(secondYearQuarter4) yearQuarter2.push('Q4');
+
+        const filter1 = { ...filter, "Quarter": yearQuarter1.length > 0 ? yearQuarter1 : undefined };
+        const filter2 = { ...filter, "Quarter": yearQuarter2.length > 0 ? yearQuarter2 : undefined };
 
         postData1.resource_id = getYearID(year1) as string;
         postData1.filters = filter1;

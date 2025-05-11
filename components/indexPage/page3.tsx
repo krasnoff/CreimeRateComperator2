@@ -2,7 +2,7 @@ import { AreasEnum } from '@/enums/area.enum';
 import { FeloniesEnum } from '@/enums/felonies.enum';
 import useGetData from '@/hooks/useGetData';
 import { ElementInterface } from '@/interfaces/element.interface';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 export interface PageTThreeProps {
@@ -10,8 +10,14 @@ export interface PageTThreeProps {
     selectedItem: ElementInterface | null
     selectedFirstYear: string | null
     selectedSecondYear: string | null
-    selectedFirstYearQuarter: string | null
-    selectedSecondYearQuarter: string | null
+    firstYearQuarter1: boolean
+    firstYearQuarter2: boolean
+    firstYearQuarter3: boolean
+    firstYearQuarter4: boolean
+    secondYearQuarter1: boolean
+    secondYearQuarter2: boolean
+    secondYearQuarter3: boolean
+    secondYearQuarter4: boolean
 }
 
 export default function PageThree(props: PageTThreeProps) {
@@ -24,8 +30,14 @@ export default function PageThree(props: PageTThreeProps) {
             props.selectedItem as ElementInterface,
             props.selectedFirstYear as string,
             props.selectedSecondYear as string,
-            props.selectedFirstYearQuarter as string,
-            props.selectedSecondYearQuarter as string)
+            props.firstYearQuarter1 as boolean, 
+            props.firstYearQuarter2 as boolean, 
+            props.firstYearQuarter3 as boolean, 
+            props.firstYearQuarter4 as boolean,
+            props.secondYearQuarter1 as boolean, 
+            props.secondYearQuarter2 as boolean, 
+            props.secondYearQuarter3 as boolean, 
+            props.secondYearQuarter4 as boolean)
     }, []);
     
     return (
@@ -49,10 +61,10 @@ export default function PageThree(props: PageTThreeProps) {
                 {props.selectedItem?.title}
             </Text>
             <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
-                שנת התחלה / רבעון: {props.selectedFirstYear}, {props.selectedFirstYearQuarter}
+                שנת התחלה / רבעון: {props.selectedFirstYear}, {props.firstYearQuarter1}, {props.firstYearQuarter2}, {props.firstYearQuarter3}, {props.firstYearQuarter4}
             </Text>
             <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
-                שנת סיום / רבעון: {props.selectedSecondYear}, {props.selectedSecondYearQuarter}
+                שנת סיום / רבעון: {props.selectedSecondYear}, {props.secondYearQuarter1}, {props.secondYearQuarter2}, {props.secondYearQuarter3}, {props.secondYearQuarter4}
             </Text>
             <View
                 style={{

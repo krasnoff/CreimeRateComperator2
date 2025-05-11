@@ -2,6 +2,10 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+    containerView: {
+        flex: 1,    
+        width: '100%',
+    },
     container: {
         flex: 1,
         paddingRight: 10,
@@ -22,6 +26,7 @@ export const styles = StyleSheet.create({
     },
     checkboxText: {
         marginRight: 10,
+        marginLeft: 10
     },
     picker: {
         direction: 'ltr',
