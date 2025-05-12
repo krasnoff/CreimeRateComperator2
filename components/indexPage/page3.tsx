@@ -4,6 +4,7 @@ import useGetData from '@/hooks/useGetData';
 import { ElementInterface } from '@/interfaces/element.interface';
 import React, { useEffect } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { styles } from './style';
 
 export interface PageTThreeProps {
     selectedCity: ElementInterface | null
@@ -41,12 +42,12 @@ export default function PageThree(props: PageTThreeProps) {
     }, []);
     
     return (
-        <>
+        <View style={styles.containerView}>
             {(!loading) ? (
-            <ScrollView style={styles.width100}>
-                <Text style={ styles.title }>שלב ג': תוצאות בדיקה</Text>
-                <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton, styles.fontBold]}>להלן פרטי השאילתה שנשלחה למאגרי המידע:</Text>
-                <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
+            <ScrollView contentContainerStyle={styles.container}>
+                <Text style={styles.title}>שלב ג': תוצאות בדיקה</Text>
+                <Text>להלן פרטי השאילתה שנשלחה למאגרי המידע:</Text>
+                <Text>
                     {props.selectedCity?.catID === AreasEnum.CITIES ? 'יישוב' : null}
                     {props.selectedCity?.catID === AreasEnum.BOROUGHS ? 'רובע' : null}
                     {props.selectedCity?.catID === AreasEnum.MERHAVIM ? 'מרחב' : null}
@@ -57,14 +58,14 @@ export default function PageThree(props: PageTThreeProps) {
                     {props.selectedCity?.catID !== undefined ? ': ' : null}
                     {props.selectedCity?.catID !== undefined ? props.selectedCity?.title : null}
                 </Text>
-                <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
+                <Text>
                     {props.selectedItem?.catID === FeloniesEnum.GROUP ? 'קטגוריה' : null}
                     {props.selectedItem?.catID === FeloniesEnum.TYPE ? 'עבירה' : null}
                     {props.selectedItem?.catID === undefined ? 'כל העבירות' : null}
                     {props.selectedItem?.catID !== undefined ? ': ' : null}
                     {props.selectedItem?.catID !== undefined ? props.selectedItem?.title : null}
                 </Text>
-                <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
+                <Text>
                     שנת התחלה { ' ' }
                     {props.selectedFirstYear} {', רבעונים:'}
                     {props.firstYearQuarter1} {props.firstYearQuarter1 ? 'Q1, ' : null}
@@ -72,7 +73,7 @@ export default function PageThree(props: PageTThreeProps) {
                     {props.firstYearQuarter3} {props.firstYearQuarter3 ? 'Q3, ' : null}
                     {props.firstYearQuarter4} {props.firstYearQuarter4 ? 'Q4, ' : null}
                 </Text>
-                <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
+                <Text>
                     שנת סיום: { ' ' } 
                     {props.selectedSecondYear} {', רבעונים:'}
                     {props.secondYearQuarter1} {props.secondYearQuarter1 ? 'Q1, ' : null}
@@ -84,19 +85,19 @@ export default function PageThree(props: PageTThreeProps) {
                     style={{
                         borderBottomColor: 'black',
                         borderBottomWidth: StyleSheet.hairlineWidth,
-                        paddingTop: 5,
-                        paddingBottom: 5,
+                        marginTop: 15,
+                        marginBottom: 15,
                         paddingLeft: 10,
                         paddingRight: 10,
                     }}
                 />
-                <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
+                <Text>
                     מספר עבירות בשנת ההתחלה: {data1?.result?.total.toLocaleString()}
                 </Text>
-                <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
+                <Text>
                     מספר עבירות בשנת הסיום: {data2?.result?.total.toLocaleString()}
                 </Text>
-                <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
+                <Text>
                     {(data2?.result?.total as number) > (data1?.result?.total as number) ? 'עלייה' : 'ירידה'} של
                     {' '}
                     {Math.abs(((data2?.result?.total as number) - (data1?.result?.total as number)) / (data1?.result?.total as number) * 100).toLocaleString('en-US', {
@@ -112,36 +113,6 @@ export default function PageThree(props: PageTThreeProps) {
                     <Text>Loading...</Text>
                 </View>
             )}
-        </>
+        </View>
     );
 }
-
-const styles = StyleSheet.create({
-    width100: {
-        width: '100%',
-    },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: 'right',
-        marginBottom: 20,
-        paddingLeft: 10,
-        paddingRight: 10,
-        marginTop: 20,
-        width: '100%'
-    },
-    padding10: {
-        paddingLeft: 10,
-        paddingRight: 10
-    },
-    rightButtonsContainerStyleText: {
-        direction: 'rtl',
-    },
-    paddingTopbutton: {
-        paddingTop: 5,
-        paddingBottom: 5
-    },
-    fontBold: {
-        fontWeight: 'bold',
-    }
-});
