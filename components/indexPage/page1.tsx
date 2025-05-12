@@ -59,7 +59,6 @@ export default function PageOne(props: PageOneProps) {
     }
 
     useEffect(() => {
-        console.log('load poge1 - start reset here');
         props.resetStates();
     }, [])
 
