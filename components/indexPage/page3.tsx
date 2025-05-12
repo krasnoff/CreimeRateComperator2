@@ -66,7 +66,7 @@ export default function PageThree(props: PageTThreeProps) {
                     {props.selectedItem?.catID !== undefined ? props.selectedItem?.title : null}
                 </Text>
                 <Text>
-                    שנת התחלה { ' ' }
+                    שנת התחלה: { ' ' }
                     {props.selectedFirstYear} {', רבעונים:'}
                     {props.firstYearQuarter1} {props.firstYearQuarter1 ? 'Q1, ' : null}
                     {props.firstYearQuarter2} {props.firstYearQuarter2 ? 'Q2, ' : null}
