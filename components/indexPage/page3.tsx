@@ -41,59 +41,78 @@ export default function PageThree(props: PageTThreeProps) {
     }, []);
     
     return (
-        <ScrollView style={styles.width100}>
-            <Text style={ styles.title }>שלב ג': תוצאות בדיקה</Text>
-            <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton, styles.fontBold]}>להלן פרטי השאילתה שנשלחה למאגרי המידע:</Text>
-            <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
-                {props.selectedCity?.catID === AreasEnum.CITIES ? 'יישוב' : null}
-                {props.selectedCity?.catID === AreasEnum.BOROUGHS ? 'רובע' : null}
-                {props.selectedCity?.catID === AreasEnum.MERHAVIM ? 'מרחב' : null}
-                {props.selectedCity?.catID === AreasEnum.POLICE_DISTRICTS ? 'מחוז' : null}
-                {props.selectedCity?.catID === AreasEnum.POLICE_STATIONS ? 'תחנת משטרה' : null}
-                {props.selectedCity?.catID === AreasEnum.MUNICIPALITIES ? 'מועצה אזורית' : null}
-                { ': '}
-                {props.selectedCity?.title}
-            </Text>
-            <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
-                {props.selectedItem?.catID === FeloniesEnum.GROUP ? 'קטגוריה' : null}
-                {props.selectedItem?.catID === FeloniesEnum.TYPE ? 'עבירה' : null}
-                { ': '}
-                {props.selectedItem?.title}
-            </Text>
-            <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
-                שנת התחלה / רבעון: {props.selectedFirstYear}, {props.firstYearQuarter1}, {props.firstYearQuarter2}, {props.firstYearQuarter3}, {props.firstYearQuarter4}
-            </Text>
-            <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
-                שנת סיום / רבעון: {props.selectedSecondYear}, {props.secondYearQuarter1}, {props.secondYearQuarter2}, {props.secondYearQuarter3}, {props.secondYearQuarter4}
-            </Text>
-            <View
-                style={{
-                    borderBottomColor: 'black',
-                    borderBottomWidth: StyleSheet.hairlineWidth,
-                    paddingTop: 5,
-                    paddingBottom: 5,
-                    paddingLeft: 10,
-                    paddingRight: 10,
-                }}
-            />
-            <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
-                מספר עבירות בשנת ההתחלה: {data1?.result?.total.toLocaleString()}
-            </Text>
-            <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
-                מספר עבירות בשנת הסיום: {data2?.result?.total.toLocaleString()}
-            </Text>
-            <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
-                {(data2?.result?.total as number) > (data1?.result?.total as number) ? 'עלייה' : 'ירידה'} של
-                {' '}
-                {Math.abs(((data2?.result?.total as number) - (data1?.result?.total as number)) / (data1?.result?.total as number) * 100).toLocaleString('en-US', {
-                
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
-                })}%
-                {' '}
-                בעבירות
-            </Text>
-        </ScrollView>
+        <>
+            {(!loading) ? (
+            <ScrollView style={styles.width100}>
+                <Text style={ styles.title }>שלב ג': תוצאות בדיקה</Text>
+                <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton, styles.fontBold]}>להלן פרטי השאילתה שנשלחה למאגרי המידע:</Text>
+                <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
+                    {props.selectedCity?.catID === AreasEnum.CITIES ? 'יישוב' : null}
+                    {props.selectedCity?.catID === AreasEnum.BOROUGHS ? 'רובע' : null}
+                    {props.selectedCity?.catID === AreasEnum.MERHAVIM ? 'מרחב' : null}
+                    {props.selectedCity?.catID === AreasEnum.POLICE_DISTRICTS ? 'מחוז' : null}
+                    {props.selectedCity?.catID === AreasEnum.POLICE_STATIONS ? 'תחנת משטרה' : null}
+                    {props.selectedCity?.catID === AreasEnum.MUNICIPALITIES ? 'מועצה אזורית' : null}
+                    {props.selectedCity?.catID === undefined ? 'כל הארץ' : null}
+                    {props.selectedCity?.catID !== undefined ? ': ' : null}
+                    {props.selectedCity?.catID !== undefined ? props.selectedCity?.title : null}
+                </Text>
+                <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
+                    {props.selectedItem?.catID === FeloniesEnum.GROUP ? 'קטגוריה' : null}
+                    {props.selectedItem?.catID === FeloniesEnum.TYPE ? 'עבירה' : null}
+                    {props.selectedItem?.catID === undefined ? 'כל העבירות' : null}
+                    {props.selectedItem?.catID !== undefined ? ': ' : null}
+                    {props.selectedItem?.catID !== undefined ? props.selectedItem?.title : null}
+                </Text>
+                <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
+                    שנת התחלה { ' ' }
+                    {props.selectedFirstYear} {', רבעונים:'}
+                    {props.firstYearQuarter1} {props.firstYearQuarter1 ? 'Q1, ' : null}
+                    {props.firstYearQuarter2} {props.firstYearQuarter2 ? 'Q2, ' : null}
+                    {props.firstYearQuarter3} {props.firstYearQuarter3 ? 'Q3, ' : null}
+                    {props.firstYearQuarter4} {props.firstYearQuarter4 ? 'Q4, ' : null}
+                </Text>
+                <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
+                    שנת סיום: { ' ' } 
+                    {props.selectedSecondYear} {', רבעונים:'}
+                    {props.secondYearQuarter1} {props.secondYearQuarter1 ? 'Q1, ' : null}
+                    {props.secondYearQuarter2} {props.secondYearQuarter2 ? 'Q2, ' : null}
+                    {props.secondYearQuarter3} {props.secondYearQuarter3 ? 'Q3, ' : null}
+                    {props.secondYearQuarter4} {props.secondYearQuarter4 ? 'Q4, ' : null}
+                </Text>
+                <View
+                    style={{
+                        borderBottomColor: 'black',
+                        borderBottomWidth: StyleSheet.hairlineWidth,
+                        paddingTop: 5,
+                        paddingBottom: 5,
+                        paddingLeft: 10,
+                        paddingRight: 10,
+                    }}
+                />
+                <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
+                    מספר עבירות בשנת ההתחלה: {data1?.result?.total.toLocaleString()}
+                </Text>
+                <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
+                    מספר עבירות בשנת הסיום: {data2?.result?.total.toLocaleString()}
+                </Text>
+                <Text style={[styles.padding10, styles.rightButtonsContainerStyleText, styles.paddingTopbutton]}>
+                    {(data2?.result?.total as number) > (data1?.result?.total as number) ? 'עלייה' : 'ירידה'} של
+                    {' '}
+                    {Math.abs(((data2?.result?.total as number) - (data1?.result?.total as number)) / (data1?.result?.total as number) * 100).toLocaleString('en-US', {
+                    
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                    })}%
+                    {' '}
+                    בעבירות
+                </Text>
+            </ScrollView>) : (
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text>Loading...</Text>
+                </View>
+            )}
+        </>
     );
 }
 
