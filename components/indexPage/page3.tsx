@@ -3,7 +3,7 @@ import { FeloniesEnum } from '@/enums/felonies.enum';
 import useGetData from '@/hooks/useGetData';
 import { ElementInterface } from '@/interfaces/element.interface';
 import React, { useEffect } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { styles } from './style';
 
 export interface PageTThreeProps {
@@ -110,6 +110,7 @@ export default function PageThree(props: PageTThreeProps) {
                 </Text>
             </ScrollView>) : (
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <ActivityIndicator size="large" />
                     <Text>Loading...</Text>
                 </View>
             )}
