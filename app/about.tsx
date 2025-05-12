@@ -4,7 +4,8 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function AboutPage() {
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>about page</Text>
+            <Text style={styles.textBold}>מיפוי פשיעה בישראל</Text>
+            <Text>מאת קובי קרסנוב</Text>
         </View>
     );
 }
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff',
     },
-    text: {
+    textBold: {
         fontSize: 24,
         fontWeight: 'bold',
     },
