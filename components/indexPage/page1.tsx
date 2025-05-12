@@ -11,6 +11,7 @@ import { styles } from "./style";
 export interface PageOneProps {
     handleSelectedItemChange: (id: ElementInterface) => void
     handleSelectedCityItemChange: (id: ElementInterface) => void
+    resetStates: () => void
 }
 
 export default function PageOne(props: PageOneProps) {
@@ -56,6 +57,11 @@ export default function PageOne(props: PageOneProps) {
         setBoroughChecked(value);
         setFilteredLocation(location);
     }
+
+    useEffect(() => {
+        console.log('load poge1 - start reset here');
+        props.resetStates();
+    }, [])
 
     useEffect(() => {
         if (isCategoriesChecked && isSingleFelonyChecked) {

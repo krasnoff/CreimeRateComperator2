@@ -36,6 +36,22 @@ export default function MainPage() {
         console.log('Selected item ID:', id);
         setSelectedItem(id);
     }
+
+    const resetStates = () => {
+        setSelectedCity(null);
+        setSelectedItem(null);
+        setSelectedFirstYear('2022');
+        setSelectedSecondYear('2024');
+        
+        setFirstYearQuarter1(true);
+        setFirstYearQuarter2(true);
+        setFirstYearQuarter3(true);
+        setFirstYearQuarter4(true);
+        setSecondYearQuarter1(true);
+        setSecondYearQuarter2(true);
+        setSecondYearQuarter3(true);
+        setSecondYearQuarter4(true);
+    };
     
     return (
         
@@ -49,6 +65,7 @@ export default function MainPage() {
                         <PageOne
                             handleSelectedCityItemChange={(id: ElementInterface) => handleSelectedCityItemChange(id)}
                             handleSelectedItemChange={(id: ElementInterface) => handleSelectedItemChange(id)}
+                            resetStates={resetStates}
                         /> 
                         
                     </Step>
