@@ -29,9 +29,8 @@ export const styles = StyleSheet.create({
         marginLeft: 10
     },
     picker: {
-        direction: 'ltr',
         width: '100%',
-        textAlign: 'left',
+        backgroundColor: '#EDEDED',
     },
     radioContainer: {
         

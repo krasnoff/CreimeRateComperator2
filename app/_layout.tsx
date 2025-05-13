@@ -17,6 +17,14 @@ export default function Layout() {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Drawer screenOptions={{
           drawerPosition: 'right', // 👈 this changes the drawer to open from the right
+          headerStyle: {
+            backgroundColor: '#4E26BF',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: '#fff',
+          },
         }}>
           <Drawer.Screen
             name="index" // This is the name of the page and must match the url from root

@@ -80,6 +80,7 @@ export default function PageTwo(props: PageTwoProps) {
                 <Text>בחר שנה / רבעון ראשונה לצורך השוואה</Text>
                 <Picker
                     mode="dropdown"
+                    style={styles.picker}
                     selectedValue={firstYear}
                     onValueChange={(itemValue, itemIndex) => 
                         firstYearHandler(itemValue)}
@@ -109,6 +110,7 @@ export default function PageTwo(props: PageTwoProps) {
                 <Text>בחר שנה / רבעון שנייה לצורך השוואה</Text>
                 <Picker
                     mode="dropdown"
+                    style={styles.picker}
                     selectedValue={secondYear}
                     onValueChange={(itemValue, itemIndex) =>
                         secondYearHandler(itemValue)

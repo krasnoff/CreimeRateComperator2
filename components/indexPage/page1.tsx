@@ -157,6 +157,7 @@ export default function PageOne(props: PageOneProps) {
                 <Text>בחר את סוג העבירה, במידה ולא תבחר עבירה אז החיפוש יהיה לכל סוגי העברות</Text>
                 <Picker
                     mode="dropdown"
+                    style={styles.picker}
                     selectedValue={selectedFilteredFelonies}
                     onValueChange={(item: ElementInterface, index: number) => onSelectItem(item, index)}>
                     <Picker.Item key={-1} label="כל סוגי העבירות" value="-1" />
@@ -180,6 +181,7 @@ export default function PageOne(props: PageOneProps) {
                 <Text>בחר יישוב / מחוז / מרחב / שכונה. במידה ולא תבחר אז החיפוש יהיה לכל הארץ</Text>
                 <Picker
                     mode="dropdown"
+                    style={styles.picker}
                     selectedValue={selectedFilteredLocation}
                     onValueChange={(item: ElementInterface, index: number) => onSelectCityItem(item, index)}>
                     <Picker.Item key={-1} label="כל המקומות" value="-1" />

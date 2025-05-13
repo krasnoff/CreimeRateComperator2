@@ -57,8 +57,8 @@ export default function MainPage() {
         
             <View style={styles.container}>
                 <StatusBar
-                backgroundColor='#FFFFFF'
-                style='dark'
+                    backgroundColor='#f4511e'
+                    style='light'
                 />
                 <Wizard>
                     <Step>
