@@ -45,7 +45,7 @@ const useGetData = () => {
             case '2024':
                 return '5fc13c50-b6f3-4712-b831-a75e0f91a17e'; // Example resource ID for 2022
             default:
-                throw new Error('Invalid year provided');
+                return ''; // error
         }
     }
 
@@ -129,14 +129,14 @@ const useGetData = () => {
             ]);
 
             // Access the response data
-            console.log('Response 1:', response1.data);
-            console.log('Response 2:', response2.data);
+            // console.log('Response 1:', response1.data);
+            // console.log('Response 2:', response2.data);
             setData1(response1.data);
             setData2(response2.data);
             setLoading(false);
             setError(null);
         } catch (error) {
-            console.error('Error sending POST requests:', error);
+            // console.error('Error sending POST requests:', error);
             setError(error);
             setLoading(false);
         }

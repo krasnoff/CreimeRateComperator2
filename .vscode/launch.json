@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Jest Tests",
+            "program": "${workspaceFolder}/node_modules/jest/bin/jest.js",
+            "args": [
+                "--runInBand" // Run tests serially to avoid issues with breakpoints
+            ],
+            "console": "integratedTerminal", // Use the integrated terminal for better output
+            "internalConsoleOptions": "neverOpen",
+            "env": {
+                "NODE_ENV": "test" // Set the environment to test
+            },
+            "disableOptimisticBPs": true, // Disable optimistic breakpoints for better debugging
+            "cwd": "${workspaceFolder}", // Set the current working directory
+            "sourceMaps": true, // Enable source maps for debugging
+            "outFiles": [
+                "${workspaceFolder}/dist/**/*.js"
+            ]
+        }
+    ]
+}
