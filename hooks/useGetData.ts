@@ -137,7 +137,7 @@ const useGetData = () => {
             setError(null);
         } catch (error) {
             // console.error('Error sending POST requests:', error);
-            setError(error);
+            setError(error === null ? new Error('There has been error in the network, please try again') : error);
             setLoading(false);
         }
     };
