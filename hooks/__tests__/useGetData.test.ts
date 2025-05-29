@@ -9,7 +9,7 @@ describe("useGetData", () => {
     });
     
     it('should store data when the API call is successful', async () => {
-        // Mock a successful API response
+        // Mock a successful API response  
         const mockResponse = { total: 1888 };
         (fetch as any).mockResolvedValueOnce({
             json: jest.fn().mockResolvedValueOnce(mockResponse),
